@@ -114,12 +114,15 @@ void hash_sort(int* data, int nums)
     int pos = 0;
     for(int i = 0; i < nums; i++)
     {
-        hash_data[data[i]] = 1;
+        hash_data[data[i]]++;
     }
     for(int i = 0; i < HASH_MAX_VALUE; i++)
     {
-        if(hash_data[i] == 1)
-            data[pos++] = i;
+        if(hash_data[i] != 0)
+        {
+            for(int j = 0; j < hash_data[i]; j++)
+                data[pos++] = i;
+        }
         if(pos == nums)
             break;
     }
