@@ -25,6 +25,35 @@ void bubble_sort(int* data, int nums)
     }
 }
 
+void insert_sort(int* data, int nums)
+{
+    for(int i = 1; i < nums; i++)
+    {
+        int insert_pos = -1;
+        for(int j = 0; j < i; j++)
+        {
+            if (data[i] <= data[j])
+            {
+                insert_pos = j;
+                break;
+            }
+            
+        }
+        if (insert_pos != -1)
+        {
+            int tmp1 = data[i], tmp2 = 0;
+            for (int j = insert_pos; j <= i; j++)
+            {
+                tmp2 = data[j];
+                data[j] = tmp1;
+                tmp1 = tmp2;
+            }
+        }
+
+    }
+}
+
+
 int main()
 {
     freopen("test.txt", "r", stdin);
@@ -37,7 +66,8 @@ int main()
         nums++;
     }
     print(data, nums);
-    bubble_sort(data, nums);
+    //bubble_sort(data, nums);
+    insert_sort(data, nums);
     print(data, nums);
     return 0;
 }
