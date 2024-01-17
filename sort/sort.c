@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #define MAX_SIZE 100
+#define HASH_MAX_VALUE 1000
 
 void print(int* data, int nums)
 {
@@ -105,6 +106,24 @@ void quick_sort(int* data, int nums)
     return;
 }
 
+void hash_sort(int* data, int nums)
+{
+    int hash_data[HASH_MAX_VALUE];
+    for(int i = 0; i < HASH_MAX_VALUE; i++)
+        hash_data[i] = 0;
+    int pos = 0;
+    for(int i = 0; i < nums; i++)
+    {
+        hash_data[data[i]] = 1;
+    }
+    for(int i = 0; i < HASH_MAX_VALUE; i++)
+    {
+        if(hash_data[i] == 1)
+            data[pos++] = i;
+        if(pos == nums)
+            break;
+    }
+}
 
 int main()
 {
@@ -121,7 +140,8 @@ int main()
     //bubble_sort(data, nums);
     //insert_sort(data, nums);
     //select_sort(data, nums);
-    quick_sort(data, nums);
+    //quick_sort(data, nums);
+    hash_sort(data, nums);
     print(data, nums);
     return 0;
 }
