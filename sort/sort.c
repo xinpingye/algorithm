@@ -73,6 +73,37 @@ void select_sort(int* data, int nums)
     }
 }
 
+void quick_sort(int* data, int nums)
+{
+    if(nums == 1 || nums == 0)
+        return;
+    int left[nums], right[nums];
+    int mid = nums/2;
+    int left_nums = 0,right_nums = 0;
+    for(int i = 0; i < nums; i++)
+    {
+        if(i != mid)
+        {
+            if(data[i] >= data[mid])
+                right[right_nums++] = data[i];
+            else
+                left[left_nums++] = data[i];
+        }
+    }
+    quick_sort(left, left_nums);
+    quick_sort(right, right_nums);
+    int mid_value = data[mid];
+    for(int i = 0; i < nums; i++)
+    {
+        if(i < left_nums)
+            data[i] = left[i];
+        else if(i == left_nums)
+            data[i] = mid_value;
+        else if(i > left_nums)
+            data[i] = right[i - (left_nums + 1)];
+    }
+    return;
+}
 
 
 int main()
@@ -89,7 +120,8 @@ int main()
     print(data, nums);
     //bubble_sort(data, nums);
     //insert_sort(data, nums);
-    select_sort(data, nums);
+    //select_sort(data, nums);
+    quick_sort(data, nums);
     print(data, nums);
     return 0;
 }
