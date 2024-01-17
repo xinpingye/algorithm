@@ -53,6 +53,27 @@ void insert_sort(int* data, int nums)
     }
 }
 
+void select_sort(int* data, int nums)
+{
+    for(int i = 0; i < nums - 1; i++)
+    {
+        int min_value = data[i];
+        int min_value_pos = i;
+        for(int j = i + 1; j < nums; j++)
+        {
+            if(data[j] < min_value)
+            {
+                min_value = data[j];
+                min_value_pos = j;
+            }
+        }
+        int tmp = data[i];
+        data[i] = data[min_value_pos];
+        data[min_value_pos] = tmp;
+    }
+}
+
+
 
 int main()
 {
@@ -67,7 +88,8 @@ int main()
     }
     print(data, nums);
     //bubble_sort(data, nums);
-    insert_sort(data, nums);
+    //insert_sort(data, nums);
+    select_sort(data, nums);
     print(data, nums);
     return 0;
 }
